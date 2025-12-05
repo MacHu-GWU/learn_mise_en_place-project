@@ -21,7 +21,7 @@ keywords = []
 readme = "README.rst"
 requires-python = ">=3.12,<3.13"
 # Full list of classifiers: https://pypi.org/classifiers/
-classifier = [
+classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
@@ -99,6 +99,17 @@ auto = [
 # Quick Links
 [project.urls]
 Homepage = "https://github.com/easyscalecloud/learn_mise_en_place-project"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["learn_mise_en_place*"]
+exclude = [
+    "learn_mise_en_place.tests*",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
 # python workflow tool config
 [tool.pywf]
