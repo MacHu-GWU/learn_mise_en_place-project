@@ -566,7 +566,7 @@ wheels = [
 [[package]]
 name = "learn-mise-en-place"
 version = "0.1.1"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "boltons" },
     { name = "boto-session-manager" },

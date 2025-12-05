@@ -1,1 +1,1 @@
-__welcome__ = "Hello World"
+# -*- coding: utf-8 -*-
