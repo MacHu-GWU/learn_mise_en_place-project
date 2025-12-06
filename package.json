@@ -1,5 +1,6 @@
 {
 	"devDependencies": {
-		"aws-cdk": "^2.1033.0"
+		"aws-cdk": "^2.1033.0",
+		"serverless": "^4.27.0"
 	}
 }
