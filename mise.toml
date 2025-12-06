@@ -1,3 +1,6 @@
+[env]
+PY_PROJECT_NAME = 'learn_mise_en_place'
+
 [tools]
 aws = { version = "latest", symlink_bins = "true" }
 claude = { version = "latest", bin = "claude", platforms = """
@@ -21,6 +24,47 @@ python = "3.12"
 ruff = "latest"
 uv = "latest"
 
-[tasks.cov]
+[tasks.venv-create]
+description = "⭐ Create project virtual environment (.venv)"
+run = "uv venv"
+
+[tasks.venv-remove]
+description = "💥 Remove project virtual environment completely"
+run = "rm -r .venv"
+
+[tasks.inst]
+description = "⭐ Install main runtime dependencies and all extra dependencies (dev, test, doc, ...)"
+run = "uv sync --all-extras"
+
+[tasks.export]
+description = "⭐ Export locked dependencies to requirements.txt for deployment"
+run = """
+uv export --no-dev --no-hashes > requirements.txt
+uv export --no-dev --all-extras --no-hashes > requirements-all.txt
+"""
+
+[tasks.fmt]
 description = "Format code"
-run = "ruff format learn_mise_en_place/"
+run = "ruff format $PY_PROJECT_NAME/"
+
+[tasks.test]
+description = "⭐ Run unit tests"
+run = """
+.venv/bin/pytest \
+    -s \
+    --rootdir=. \
+    tests
+"""
+
+[tasks.cov]
+description = "⭐ Run tests with coverage analysis"
+run = """
+.venv/bin/pytest \
+    -s \
+    --tb=native \
+    --rootdir=. \
+    --cov=$PY_PROJECT_NAME \
+    --cov-report term-missing \
+    --cov-report html:htmlcov \
+    tests
+"""
